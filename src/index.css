@@ -1,0 +1,6 @@
+ /* Set up link for using Tailwind CSS with Vite
+ https://tailwindcss.com/docs/guides/vite#react */
+ 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
