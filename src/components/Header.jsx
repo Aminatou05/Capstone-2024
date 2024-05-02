@@ -35,13 +35,16 @@ className='bg-transparent focus: outline-none w-24 sm:w-64' />
             </li>
           </Link>
           <Link to='/profile'>
+             {/* Conditional rendering based on whether a user is logged in */}
             {currentUser ? (
+                // Render user's avatar if logged in
               <img
                 className='rounded-full h-7 w-7 object-cover'
                 src={currentUser.avatar}
                 alt='profile'
               />
             ) : (
+                // Render a sign-in link if not logged in
               <li className=' text-slate-700 hover:underline'> Sign in</li>
             )}
           </Link>
