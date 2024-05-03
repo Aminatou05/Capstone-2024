@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function Home() {
   return (
-    <div>Home Sweet</div>
-  )
+    <div className="home">
+      Home Sweet
+    </div>
+  );
 }

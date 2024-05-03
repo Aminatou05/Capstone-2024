@@ -22,38 +22,43 @@ export default function Profile() {
   // request.resource.contentType.matches('image/.*')
   //useEffect
   useEffect(() => {
+    // When 'file' changes, upload the file
     if (file) {
       handleFileUpload(file);
     }
-  }, [file]);
-
+  }, [file]); // Dependency array ensures this effect runs whenever 'file' changes
+  
+  // Function to handle file upload
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
-
+  
+    // Listen for upload state changes
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         setFilePerc(Math.round(progress));
       },
       (error) => {
         setFileUploadError(true);
       },
       () => {
+        // Get download URL and set it in the form data
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
           setFormData({ ...formData, avatar: downloadURL })
         );
       }
     );
   };
-
+  
+  // Function to handle form input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  
   return (
     <div className=' p-3 max-w-lg mx-auto gap-4' >
        <h1 className='text-3xl font-semibold  text-center my-7'>Profile</h1>

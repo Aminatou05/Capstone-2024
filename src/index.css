@@ -8,3 +8,15 @@
 body{
     background-color: rgb(241, 245, 241);
 }
+
+/* Home.css */
+.home {
+    /* font-family: Arial, sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px; */
+    /* color: blue; */
+    /* background-image: url('https://media.istockphoto.com/id/1741416365/photo/low-density-two-story-private-homes-in-rural-residential-suburbs-outside-of-rochester-new.jpg?s=2048x2048&w=is&k=20&c=f_QlTi9tV_MVppJNTcHeh9lJBHbtO3f_MGsZgLQIkxI='); */
+background-color: aqua;
+  }
+  
