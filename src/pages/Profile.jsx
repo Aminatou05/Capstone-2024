@@ -84,7 +84,7 @@ const handleSubmit = async (e) => {
   try {
     dispatch(updateUserStart());
     const res = await fetch(`/api/user/update/${currentUser._id}`, {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -165,7 +165,7 @@ const handleListingDelete = async (listingId) => {
       console.log(data.message);
       return;
     }
-
+   // Filter out the deleted listing from the user's listings
     setUserListings((prev) =>
       prev.filter((listing) => listing._id !== listingId)
     );
