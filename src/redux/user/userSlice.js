@@ -1,54 +1,95 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
-// Define the initial state for the user slice
+// Initial state for the user slice
 const initialState = {
-  currentUser: null, // Current user data
-  error: null, // Error message
-  loading: false, // Loading state indicator
+  currentUser: null,
+  error: null,
+  loading: false,
 };
-// Create a slice for the user state
+
+// Create a user slice with reducer functions
 const userSlice = createSlice({
-  name: "user", // Name of the slice
-  initialState, // Initial state
+  name: 'user',
+  initialState,
   reducers: {
-    // Reducer for starting a sign-in action
+    // Reducer for when sign-in operation starts
     signInStart: (state) => {
-      state.loading = true; // Set loading to true
+      state.loading = true;
     },
     // Reducer for successful sign-in
     signInSuccess: (state, action) => {
-      state.currentUser = action.payload; // Update current user data
-      state.loading = false; // Set loading to false
-      state.error = null; // Reset error
+      state.currentUser = action.payload;
+      state.loading = false;
+      state.error = null;
     },
     // Reducer for sign-in failure
     signInFailure: (state, action) => {
-      state.error = action.payload; // Set error message
-      state.loading = false; // Set loading to false
+      state.error = action.payload;
+      state.loading = false;
     },
+    // Reducer for when update user operation starts
     updateUserStart: (state) => {
       state.loading = true;
     },
-
+    // Reducer for successful user update
     updateUserSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
     },
+    // Reducer for user update failure
     updateUserFailure: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+    // Reducer for when delete user operation starts
+    deleteUserStart: (state) => {
+      state.loading = true;
+    },
+    // Reducer for successful user deletion
+    deleteUserSuccess: (state) => {
+      state.currentUser = null;
+      state.loading = false;
+      state.error = null;
+    },
+    // Reducer for user deletion failure
+    deleteUserFailure: (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    },
+    // Reducer for when sign-out operation starts
+    signOutUserStart: (state) => {
+      state.loading = true;
+    },
+    // Reducer for successful sign-out
+    signOutUserSuccess: (state) => {
+      state.currentUser = null;
+      state.loading = false;
+      state.error = null;
+    },
+    // Reducer for sign-out failure
+    signOutUserFailure: (state, action) => {
       state.error = action.payload;
       state.loading = false;
     },
   },
 });
-// Export the slice's actions and reducer
+
+// Export the action creators and the reducer function
 export const {
   signInStart,
   signInSuccess,
   signInFailure,
-  updateUserStart,
-  updateUserSuccess,
   updateUserFailure,
+  updateUserSuccess,
+  updateUserStart,
+  deleteUserFailure,
+  deleteUserSuccess,
+  deleteUserStart,
+  signOutUserFailure,
+  signOutUserSuccess,
+  signOutUserStart,
 } = userSlice.actions;
 
 export default userSlice.reducer;
+

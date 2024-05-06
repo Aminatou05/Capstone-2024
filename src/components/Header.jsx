@@ -34,6 +34,11 @@ className='bg-transparent focus: outline-none w-24 sm:w-64' />
               About
             </li>
           </Link>
+          <Link to='/agent-info'>
+            <li className='hidden sm:inline text-slate-700 hover:underline'>
+            AgentInfo
+            </li>
+          </Link>
           <Link to='/profile'>
              {/* Conditional rendering based on whether a user is logged in */}
             {currentUser ? (

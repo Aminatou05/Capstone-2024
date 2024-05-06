@@ -1,15 +1,27 @@
 
 //use this for my redux set up https://redux-toolkit.js.org/tutorials/quick-start
 //going to add redux so i  can have access to user data and differrent  places within my application
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import userReducer from './user/userSlice';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-// This function creates a Redux store with an empty root reducer and customizes the default middleware
-// to disable the serializability check for actions and state.
+const rootReducer = combineReducers({ user: userReducer });
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  version: 1,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-  reducer: {user: userReducer},
+  reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: false,
     }),
 });
+
+export const persistor = persistStore(store);
